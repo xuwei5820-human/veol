@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>比較結果｜VEOL</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2236%22%20height%3D%2236%22%20rx%3D%229%22%20fill%3D%22%2315161b%22%20stroke%3D%22%23ff9f43%22%20stroke-width%3D%222.5%22/%3E%3Cpath%20d%3D%22M11%2013%20L20%2028%22%20fill%3D%22none%22%20stroke%3D%22%23ff5fa2%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M20%2028%20L29%2013%22%20fill%3D%22none%22%20stroke%3D%22%23c877ff%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%229.5%22%20r%3D%222.6%22%20fill%3D%22%238a88ff%22/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+/* VEOL — 視覺語言取自企畫書的網站架構圖：深色畫布、霓虹線框、每頁一個顏色。
+   斷點：Mobile ≤767px｜Tablet 768–1023px｜Desktop ≥1024px（手機優先） */
+:root {
+  --bg: #15161b;
+  --bg2: #1c1e26;
+  --bg3: #242733;
+  --line: #343848;
+  --text: #f3f0e8;
+  --muted: #a9adbd;
+  --orange: #ff9f43;
+  --coral: #ff625b;
+  --pink: #ff5fa2;
+  --violet: #c877ff;
+  --indigo: #8a88ff;
+  --amber: #ffd27a;
+  --accent: var(--orange);
+  --radius: 10px;
+  --font: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Heiti TC", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+body[data-page="home"] { --accent: var(--orange); }
+body[data-page="advisor"] { --accent: var(--coral); }
+body[data-page="compare"] { --accent: var(--pink); }
+body[data-page="product"] { --accent: var(--violet); }
+body[data-page="about"] { --accent: var(--indigo); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
+body {
+  margin: 0; font-family: var(--font); color: var(--text); background: var(--bg);
+  line-height: 1.7; font-size: 16px; overflow-wrap: anywhere;
+  background-image: radial-gradient(circle, #2a2d3a 1px, transparent 1.2px); background-size: 26px 26px;
+}
+img, svg { max-width: 100%; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--text); }
+h1, h2, h3 { line-height: 1.3; margin: 0 0 .5em; color: var(--text); font-weight: 900; text-wrap: balance; }
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.05rem; font-weight: 700; }
+p { margin: 0 0 1em; }
+code { background: var(--bg3); padding: 1px 6px; border-radius: 4px; font-size: .9em; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.container { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 16px; }
+.muted { color: var(--muted); }
+.small { font-size: .875rem; }
+main { display: block; min-height: 60vh; }
+
+/* 霓虹線框：架構圖的節點樣式 */
+.neon { border: 2px solid var(--accent); border-radius: var(--radius); box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 45%, transparent), inset 0 0 10px color-mix(in srgb, var(--accent) 18%, transparent); }
+
+/* ---------- 導覽列 ---------- */
+.site-header { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 88%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.nav { display: flex; align-items: center; justify-content: space-between; min-height: 64px; gap: 12px; position: relative; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 900; font-size: 1.3rem; letter-spacing: .14em; }
+.brand svg { width: 36px; height: 36px; display: block; flex: none; }
+.brand:hover { color: var(--text); }
+.nav-toggle { min-height: 44px; min-width: 44px; padding: 0 14px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--bg2); color: var(--text); font: inherit; cursor: pointer; }
+.nav-menu { display: none; position: absolute; top: 100%; left: -16px; right: -16px; background: var(--bg2); border-bottom: 1px solid var(--line); padding: 8px 16px 16px; }
+.nav-menu.open { display: block; }
+.nav-menu a { display: flex; align-items: center; min-height: 48px; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--line); }
+.nav-menu a[aria-current="page"] { color: var(--accent); font-weight: 700; }
+.nav-menu a:last-child { border-bottom: 0; }
+#progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 40; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--orange), var(--coral), var(--pink), var(--violet), var(--indigo)); }
+
+/* ---------- 按鈕與表單 ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 8px; border: 2px solid var(--accent); background: var(--accent); color: #15161b; font: inherit; font-weight: 900; text-decoration: none; cursor: pointer; text-align: center; box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 50%, transparent); transition: transform .15s, box-shadow .15s; }
+.btn:hover { color: #15161b; transform: translateY(-2px); box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 75%, transparent); }
+.btn.secondary { background: transparent; color: var(--accent); box-shadow: inset 0 0 10px color-mix(in srgb, var(--accent) 20%, transparent); }
+.btn.secondary:hover { color: var(--text); }
+.btn.block { width: 100%; }
+label { font-weight: 700; display: block; margin-bottom: 6px; }
+input[type="text"], input[type="number"], textarea, select {
+  width: 100%; min-height: 48px; padding: 10px 14px; font: inherit; color: var(--text);
+  background: var(--bg); border: 1.5px solid #555a70; border-radius: 8px; color-scheme: dark;
+}
+textarea { min-height: 112px; resize: vertical; }
+::placeholder { color: #8589a0; opacity: 1; }
+input:focus, textarea:focus, select:focus { border-color: var(--accent); outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+input:disabled { opacity: .45; }
+.field { margin-bottom: 18px; min-width: 0; }
+.hint { font-size: .875rem; color: var(--muted); margin-top: 6px; }
+.error-text { color: #ff8f8a; font-size: .9rem; margin-top: 6px; font-weight: 700; }
+
+/* ---------- 小元件 ---------- */
+.card { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; min-width: 0; }
+.panel { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }
+.notice { border: 1.5px dashed var(--amber); color: var(--amber); border-radius: var(--radius); padding: 12px 16px; font-size: .92rem; background: color-mix(in srgb, var(--amber) 7%, transparent); }
+.notice strong, .notice b { color: #fff0cc; }
+.badge { display: inline-flex; align-items: center; padding: 1px 10px; border-radius: 6px; font-size: .78rem; font-weight: 700; color: var(--muted); border: 1.5px solid var(--line); white-space: nowrap; }
+.badge.warn { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 60%, transparent); }
+.badge.teal { color: var(--accent); border-color: var(--accent); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; min-height: 34px; padding: 3px 12px; border-radius: 6px; color: var(--text); font-size: .9rem; border: 1.5px solid var(--accent); box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 35%, transparent); background: var(--bg); }
+.unknown { color: var(--amber); border: 1px dashed color-mix(in srgb, var(--amber) 60%, transparent); border-radius: 5px; padding: 0 6px; font-size: .88em; white-space: nowrap; }
+.grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+
+/* ---------- 首頁：主視覺 ---------- */
+.hero { position: relative; padding: 44px 0 36px; overflow: clip; }
+.hero h1 { font-size: clamp(2.5rem, 11.5vw, 5.6rem); line-height: 1.12; letter-spacing: -.01em; margin-bottom: .45em; }
+.hero h1 span { display: block; }
+.hero p.lead { font-size: 1.05rem; color: var(--muted); max-width: 30em; margin-bottom: 26px; }
+.hero-inner { will-change: transform, opacity; }
+.sitemap { display: block; width: 100%; max-width: 560px; margin: 36px auto 0; overflow: visible; }
+.sitemap .wire { fill: none; stroke: #e9e6de; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.1s .25s ease-out forwards; }
+.sitemap .node rect { fill: var(--bg); stroke: var(--c); stroke-width: 2.5; filter: drop-shadow(0 0 6px var(--c)); transition: fill .2s; }
+.sitemap .node text { fill: var(--c); font-weight: 700; font-size: 17px; text-anchor: middle; dominant-baseline: central; }
+.sitemap .node { opacity: 0; animation: pop .45s ease-out forwards; animation-delay: calc(.35s + var(--i) * .16s); }
+.sitemap a:hover rect, .sitemap a:focus-visible rect { fill: color-mix(in srgb, var(--c) 22%, var(--bg)); }
+.sitemap .sub { fill: var(--muted); font-size: 12px; text-anchor: middle; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ---------- 首頁：需求輸入 ---------- */
+.start { padding: 28px 0 56px; }
+.ask-box { background: var(--bg2); padding: 20px; }
+.ask-box h2 { font-size: 1.3rem; }
+.ask-box .btn { margin-top: 12px; }
+.scenario-title { margin: 30px 0 12px; font-size: 1rem; color: var(--muted); font-weight: 700; }
+.scenarios { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); }
+.scenario { --c: var(--orange); display: block; min-height: 68px; padding: 12px 16px; border-radius: 8px; border: 2px solid var(--c); background: var(--bg); color: var(--text); text-decoration: none; box-shadow: 0 0 10px color-mix(in srgb, var(--c) 35%, transparent), inset 0 0 8px color-mix(in srgb, var(--c) 14%, transparent); transition: transform .15s, background .15s; }
+.scenario:nth-child(5n+2) { --c: var(--coral); } .scenario:nth-child(5n+3) { --c: var(--pink); } .scenario:nth-child(5n+4) { --c: var(--violet); } .scenario:nth-child(5n+5) { --c: var(--indigo); }
+.scenario:hover { transform: translateY(-3px); background: color-mix(in srgb, var(--c) 14%, var(--bg)); color: var(--text); }
+.scenario b { display: block; font-size: 1.02rem; color: var(--c); }
+.scenario span { display: block; font-size: .85rem; color: var(--muted); line-height: 1.5; margin-top: 2px; }
+.scope-strip { margin-top: 22px; }
+
+/* ---------- 首頁：滾動場景「產品如何運作」 ---------- */
+.scene { position: relative; height: 420vh; border-top: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 70%, #000); }
+.scene-pin { position: sticky; top: 64px; height: calc(100vh - 64px); height: calc(100svh - 64px); overflow: hidden; display: flex; flex-direction: column; padding: 14px 0 12px; }
+.scene-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; flex: 1; min-height: 0; align-content: start; }
+.scene-title { font-size: .95rem; color: var(--muted); font-weight: 700; margin: 0 0 6px; }
+.steps { list-style: none; margin: 0; padding: 0; position: relative; min-height: 104px; }
+.steps li { position: absolute; inset: 0 0 auto 0; opacity: 0; transform: translateY(14px); transition: opacity .35s, transform .35s; pointer-events: none; }
+.steps li.on { opacity: 1; transform: none; }
+.steps .n { display: inline-grid; place-items: center; width: 32px; height: 32px; border: 2px solid var(--c); color: var(--c); border-radius: 7px; font-weight: 900; margin-right: 10px; box-shadow: 0 0 10px color-mix(in srgb, var(--c) 50%, transparent); }
+.steps b { font-size: 1.35rem; font-weight: 900; }
+.steps p { margin: 6px 0 0; color: var(--muted); font-size: .92rem; line-height: 1.55; }
+.steps li:nth-child(1) { --c: var(--orange); } .steps li:nth-child(2) { --c: var(--pink); } .steps li:nth-child(3) { --c: var(--violet); }
+.stage { position: relative; min-height: 0; }
+.say { font-size: 1.25rem; font-weight: 700; line-height: 1.6; margin: 0 0 12px; transition: opacity .35s, max-height .4s, margin .4s; max-height: 8em; overflow: hidden; }
+.say mark { background: none; color: inherit; border-bottom: 2px solid transparent; transition: color .3s, border-color .3s, text-shadow .3s; padding-bottom: 1px; }
+.say mark.lit { color: var(--orange); border-color: var(--orange); text-shadow: 0 0 12px color-mix(in srgb, var(--orange) 70%, transparent); }
+.scene-chips .chip { opacity: 0; transform: translateY(8px) scale(.96); transition: opacity .3s, transform .3s; --accent: var(--orange); }
+.scene-chips .chip.on { opacity: 1; transform: none; }
+.rows { position: relative; margin-top: 12px; opacity: 0; transition: opacity .4s; }
+.row { position: absolute; left: 0; right: 0; top: 0; height: 19px; display: grid; grid-template-columns: 7.4em 5.6em minmax(0, 1fr) 2em; gap: 8px; align-items: center; font-size: .78rem; transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .45s; font-variant-numeric: tabular-nums; }
+.row .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; }
+.row .pr { color: var(--muted); text-align: right; white-space: nowrap; }
+.scene-chips .chip { min-height: 28px; font-size: .8rem; padding: 2px 9px; }
+.row .track { position: relative; height: 10px; border-radius: 5px; background: var(--bg3); overflow: hidden; }
+.row .poss, .row .conf { position: absolute; inset: 0 auto 0 0; width: 0; }
+.row .poss { background: repeating-linear-gradient(45deg, color-mix(in srgb, var(--violet) 55%, transparent) 0 4px, transparent 4px 8px); }
+.row .conf { background: var(--violet); border-radius: 5px; box-shadow: 0 0 10px var(--violet); }
+.row .sc { font-weight: 900; color: var(--violet); opacity: 0; transition: opacity .3s; text-align: right; }
+.row.out .nm, .row.out .pr { color: var(--coral); text-decoration: line-through; }
+.row.out { opacity: .38; }
+.scene[data-stage="1"] .rows { opacity: 0; }
+.scene[data-stage="2"] .rows, .scene[data-stage="3"] .rows { opacity: 1; }
+.scene[data-stage="2"] .say, .scene[data-stage="3"] .say { max-height: 0; opacity: 0; margin: 0; }
+.scene[data-stage="3"] .row.out { opacity: 0; }
+.scene[data-stage="3"] .row .sc { opacity: 1; }
+.scene-foot { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; opacity: 0; transform: translateY(10px); transition: opacity .4s, transform .4s; pointer-events: none; padding-top: 8px; }
+.scene-foot.on { opacity: 1; transform: none; pointer-events: auto; }
+.scene-foot p { margin: 0; font-size: .82rem; color: var(--muted); flex: 1 1 14em; }
+.scene-foot .btn { --accent: var(--violet); min-height: 44px; }
+.scroll-cue { position: absolute; right: 16px; bottom: 10px; font-size: .78rem; color: var(--muted); transition: opacity .3s; }
+/* 減少動態：不釘選，直接顯示結果 */
+.scene.static { height: auto; }
+.scene.static .scene-pin { position: static; height: auto; overflow: visible; padding: 40px 0; }
+.scene.static .steps { min-height: 0; display: grid; gap: 14px; }
+.scene.static .steps li { position: static; opacity: 1; transform: none; }
+.scene.static .scroll-cue { display: none; }
+
+/* ---------- 內頁頁首 ---------- */
+.page-head { padding: 28px 0 10px; }
+.page-head h1 { font-size: 1.7rem; }
+.page-head h1::after { content: ""; display: block; width: 56px; height: 4px; margin-top: 12px; border-radius: 2px; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+.crumbs { font-size: .9rem; margin-bottom: 8px; color: var(--muted); }
+
+/* ---------- AI 購物顧問 ---------- */
+.advisor-grid { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+.chat { background: var(--bg2); padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.thread { display: flex; flex-direction: column; gap: 12px; min-height: 200px; }
+.msg { max-width: 92%; padding: 10px 14px; border-radius: 12px; font-size: .96rem; animation: pop .3s ease-out; }
+.msg.bot { align-self: flex-start; background: var(--bg3); border: 1px solid var(--line); border-top-left-radius: 3px; }
+.msg.me { align-self: flex-end; background: color-mix(in srgb, var(--accent) 16%, var(--bg)); border: 1.5px solid var(--accent); border-top-right-radius: 3px; }
+.msg .who { display: block; font-size: .75rem; color: var(--muted); font-weight: 700; margin-bottom: 2px; }
+.msg ul { margin: 6px 0 0; padding-left: 1.1em; }
+.msg .quick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.quick button { min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1.5px solid var(--accent); background: var(--bg); color: var(--text); font: inherit; font-size: .9rem; cursor: pointer; }
+.quick button:hover { background: color-mix(in srgb, var(--accent) 22%, var(--bg)); }
+.chat-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+.chat-form .btn { padding: 0 18px; }
+.summary h2 { font-size: 1.15rem; }
+.summary h3 { margin-top: 18px; color: var(--muted); font-size: .92rem; }
+.check-grid { display: grid; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.check { display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 6px 10px; border: 1.5px solid #555a70; border-radius: 8px; font-weight: 500; margin: 0; cursor: pointer; background: var(--bg); font-size: .92rem; }
+.check input { width: 20px; height: 20px; accent-color: var(--accent); flex: none; }
+.check:has(input:checked) { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--bg)); }
+.two-col { display: grid; gap: 0 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.slider-row { margin-bottom: 12px; }
+.slider-row .top { display: flex; justify-content: space-between; gap: 8px; font-weight: 700; font-size: .92rem; }
+.slider-row .eff { color: var(--accent); font-variant-numeric: tabular-nums; white-space: nowrap; }
+input[type="range"] { width: 100%; min-height: 36px; accent-color: var(--accent); }
+details.weights { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 6px; }
+details summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 700; color: var(--accent); }
+.actions { display: grid; gap: 10px; margin-top: 16px; }
+
+/* ---------- 比較頁 ---------- */
+.cond-bar { display: flex; flex-direction: column; gap: 12px; }
+.toolbar { display: flex; flex-direction: column; gap: 10px; margin: 18px 0 6px; }
+.result-card { display: flex; flex-direction: column; gap: 10px; position: relative; }
+.result-card.top { border: 2px solid var(--accent); box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 40%, transparent), inset 0 0 10px color-mix(in srgb, var(--accent) 14%, transparent); }
+.result-card .rank { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 7px; border: 2px solid var(--accent); color: var(--accent); font-weight: 900; display: grid; place-items: center; }
+.result-card h3 { margin: 0; padding-right: 44px; font-size: 1.02rem; }
+.price { font-size: 1.4rem; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; }
+.score { display: grid; gap: 4px; }
+.score-bar { position: relative; height: 12px; border-radius: 6px; background: var(--bg3); overflow: hidden; }
+.score-bar .poss { position: absolute; inset: 0 auto 0 0; background: repeating-linear-gradient(45deg, color-mix(in srgb, var(--accent) 55%, transparent) 0 4px, transparent 4px 8px); }
+.score-bar .conf { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 6px; }
+.score-nums { display: flex; justify-content: space-between; gap: 8px; font-size: .86rem; flex-wrap: wrap; color: var(--muted); }
+.score-nums b { font-size: 1.15rem; color: var(--accent); }
+.reasons { margin: 0; padding-left: 1.1em; font-size: .92rem; }
+details.breakdown { border-top: 1px dashed var(--line); padding-top: 4px; }
+.card-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-top: auto; }
+.card-actions .btn { min-height: 44px; padding: 0 16px; }
+.pick { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 700; margin: 0; cursor: pointer; }
+.pick input { width: 22px; height: 22px; accent-color: var(--accent); }
+.empty { text-align: center; padding: 28px 18px; }
+table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+thead th { background: var(--bg3); }
+.table-wrap { width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg2); }
+.compare-table { min-width: 640px; }
+.compare-table th:first-child { position: sticky; left: 0; background: var(--bg2); min-width: 100px; font-weight: 700; box-shadow: 1px 0 0 var(--line); z-index: 1; color: var(--muted); }
+.compare-table thead th:first-child { background: var(--bg3); z-index: 2; }
+.compare-table td ul { margin: 0; padding-left: 1.1em; }
+.small-table { font-size: .88rem; }
+.excluded details { border: 1px solid var(--line); border-radius: var(--radius); padding: 2px 16px; margin-bottom: 12px; background: var(--bg2); }
+.excluded summary { color: var(--text); }
+.ex-item { padding: 10px 0; border-top: 1px solid var(--line); }
+
+/* ---------- 詳情頁 ---------- */
+.detail-grid { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); }
+.kv { margin: 0; }
+.kv > div { display: grid; grid-template-columns: 8em minmax(0, 1fr); gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; }
+.pc ul { margin: 0; padding-left: 1.1em; }
+.src { word-break: break-all; }
+
+/* ---------- 關於 ---------- */
+.prose { max-width: 780px; }
+.prose h2 { margin-top: 1.8em; scroll-margin-top: 90px; }
+.prose ul { padding-left: 1.2em; }
+.logo-showcase { display: flex; align-items: center; gap: 14px; padding: 22px; background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); font-weight: 900; font-size: 2rem; letter-spacing: .14em; }
+.logo-showcase svg { width: 64px; height: 64px; }
+
+/* ---------- 頁尾 ---------- */
+.site-footer { margin-top: 48px; border-top: 1px solid var(--line); background: #101116; color: var(--muted); padding: 32px 0; font-size: .92rem; }
+.site-footer a { color: var(--text); }
+.site-footer .foot { display: grid; gap: 16px; }
+.site-footer .links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.site-footer .links a, .site-footer .links span { display: inline-flex; align-items: center; min-height: 40px; }
+
+/* ================= Tablet：768–1023px ================= */
+@media (min-width: 768px) {
+  .container { padding: 0 28px; }
+  .nav-toggle { display: none; }
+  .nav-menu { display: flex !important; position: static; padding: 0; border: 0; background: transparent; gap: 4px; }
+  .nav-menu a { border: 0; padding: 0 14px; border-radius: 8px; min-height: 44px; font-size: .95rem; }
+  .nav-menu a:hover { background: var(--bg3); }
+  .hero { padding: 64px 0 48px; }
+  .scenarios { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid.cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cond-bar, .toolbar { flex-direction: row; align-items: center; justify-content: space-between; }
+  .toolbar select { width: auto; min-width: 280px; }
+  .site-footer .foot { grid-template-columns: minmax(0, 1fr) auto; }
+  .compare-table { min-width: 0; }
+  .check-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .scene-pin { padding: 28px 0 20px; }
+  .say { font-size: 1.6rem; }
+  .row { height: 30px; font-size: .9rem; grid-template-columns: 9.5em 6em minmax(0, 1fr) 2.6em; }
+  .scene-chips .chip { min-height: 34px; font-size: .9rem; padding: 3px 12px; }
+  .steps { min-height: 120px; }
+  .steps b { font-size: 1.7rem; }
+  .actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ================= Desktop：≥1024px ================= */
+@media (min-width: 1024px) {
+  .container { padding: 0 32px; }
+  .hero { padding: 72px 0 64px; min-height: calc(100vh - 64px); display: flex; align-items: center; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+  .sitemap { margin: 0; max-width: none; }
+  .start-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 36px; align-items: start; }
+  .scenario-title { margin-top: 0; }
+  .scenarios { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid.cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .advisor-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+  .chat { position: sticky; top: 84px; }
+  .detail-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: start; }
+  .compare-table { table-layout: fixed; }
+  .scene-grid { grid-template-columns: minmax(0, .8fr) minmax(0, 1.4fr); gap: 56px; align-content: center; align-items: center; }
+  .steps { min-height: 220px; }
+  .steps b { font-size: 2.3rem; display: block; margin-top: 14px; }
+  .steps p { font-size: 1.05rem; }
+  .say { font-size: 2rem; }
+  .actions { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .sitemap .wire { stroke-dashoffset: 0; } .sitemap .node { opacity: 1; }
+}
+.scene.static .say { max-height: none; opacity: 1; margin: 0 0 12px; }
+  </style>
+</head>
+<body data-page="compare">
+  <header id="site-header"></header>
+  <main>
+    <div class="container">
+      <div class="page-head">
+        <p class="crumbs"><a href="index.html">首頁</a> › <a id="back-confirm" href="advisor.html">AI 購物顧問</a> › 比較結果</p>
+        <h1>比較結果</h1>
+      </div>
+
+      <div id="cond" class="panel cond-bar"></div>
+      <div id="scope" style="margin-top:14px"></div>
+
+      <div class="toolbar">
+        <div id="summary" role="status"></div>
+        <div style="min-width:0">
+          <label for="sort" class="sr-only">排序依據</label>
+          <select id="sort">
+            <option value="low">排序：已確認分數（未知項不計分）</option>
+            <option value="up">排序：最高可能分數（未知項以滿分計）</option>
+          </select>
+        </div>
+      </div>
+      <p class="hint" style="margin-top:0">分數只代表「與你設定條件的符合程度」，不是商品的客觀品質排名。缺漏資料不當作 0 分，也不替它猜測；已確認分數與最高可能分數之間的差距，就是尚待確認的部分。</p>
+
+      <section id="results" style="padding:20px 0 8px" aria-label="符合條件的商品"></section>
+      <section id="compare" style="padding:12px 0" aria-labelledby="cmp-title">
+        <h2 id="cmp-title">規格比較表</h2>
+        <p class="hint" style="margin-top:0">在上方勾選要並排比較的商品（最多 4 款）。手機上表格可在框內左右滑動。</p>
+        <div id="cmp-msg" class="error-text" role="alert" hidden>最多只能同時比較 4 款。</div>
+        <div id="cmp-table"></div>
+      </section>
+      <section id="excluded" class="excluded" style="padding:12px 0 0"></section>
+    </div>
+  </main>
+  <footer id="site-footer"></footer>
+
+  <script>
+(function (root) {
+  root.VEOL = root.VEOL || {};
+  root.VEOL.config = {
+    // Google 表單回饋連結：尚未提供，留空時頁面會顯示「尚未設定」而不是假連結。
+    FEEDBACK_FORM_URL: "",
+    ASOF_NOTE: "價格以來源網站為準"
+  };
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+  <script>
+/* 規則式需求解析：把一句話轉成「系統理解的條件」。不呼叫任何外部服務。 */
+(function (root) {
+  root.VEOL = root.VEOL || {};
+
+  const CN = { 零: 0, 一: 1, 二: 2, 兩: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 };
+  const NUM = "(?:\\d+(?:\\.\\d+)?|[零一二兩三四五六七八九十]+)";
+
+  function cnToNum(s) {
+    if (/^\d+(\.\d+)?$/.test(s)) return parseFloat(s);
+    if (s === "十") return 10;
+    const m = s.match(/^([一二兩三四五六七八九])?十([一二三四五六七八九])?$/);
+    if (m) return (m[1] ? CN[m[1]] : 1) * 10 + (m[2] ? CN[m[2]] : 0);
+    if (s.length === 1 && s in CN) return CN[s];
+    return NaN;
+  }
+
+  function normalize(text) {
+    return String(text || "")
+      .replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
+      .replace(/[，,](?=\d{3}\b)/g, "")
+      .replace(/，/g, ",")
+      .trim();
+  }
+
+  // 用途關鍵字。代碼 A–F 與資料集的情境欄位（scenarios.A–F）一致。
+  const PURPOSE_RULES = [
+    ["F", /3A|重度|高畫質|獨顯|獨立顯卡|顯卡|RTX|GTX|GPU|跑模型|深度學習/i],
+    ["E", /遊戲|電競|LOL|英雄聯盟|原神|steam/i],
+    ["C", /剪輯|剪片|影片|後製|修圖|繪圖|設計|創作|Premiere|Photoshop|攝影/i],
+    ["D", /程式|寫\s*code|開發|coding|AI|機器學習|工程/i],
+    ["B", /辦公|上班|商務|會議|公司|工作用|簡報/i],
+    ["A", /上課|學生|大學|報告|文書|Office|筆記|論文|網課|線上課/i]
+  ];
+
+  const BRAND_RULES = [
+    ["Acer", /acer|宏碁/i],
+    ["ASUS", /asus|華碩/i],
+    ["Lenovo", /lenovo|聯想/i],
+    ["HP", /\bhp\b|惠普/i],
+    ["Apple", /apple|蘋果|macbook|\bmac\b/i],
+    ["MSI", /\bmsi\b|微星/i],
+    ["Dell", /dell|戴爾/i],
+    ["GIGABYTE", /gigabyte|技嘉/i]
+  ];
+
+  function parseRequirement(raw) {
+    let t = normalize(raw);
+    const out = {
+      raw: String(raw || ""),
+      budget: null,
+      unlimited: false,
+      purposes: [],
+      ramMin: null,
+      storageMin: null,
+      weightMax: null,
+      brands: [],
+      discrete: false,
+      portable: false,
+      notes: []
+    };
+
+    if (/不限預算|預算不限|預算.{0,2}沒有限制/.test(t)) out.unlimited = true;
+
+    // 1) 儲存：TB
+    t = t.replace(/(\d+(?:\.\d+)?)\s*(?:TB|tb|T)(?![a-zA-Z])/g, (m, v) => {
+      out.storageMin = Math.max(out.storageMin || 0, parseFloat(v) * 1000);
+      return " ";
+    });
+    // 2) GB：依前後文判斷是記憶體或儲存空間，沒有線索時 ≥128 視為儲存
+    t = t.replace(/(\d+)\s*(?:GB|gb|G|g)(?![a-zA-Z])/g, (m, v, idx, whole) => {
+      const val = parseInt(v, 10);
+      // 先看數字「後面」緊接的關鍵字（「16G 記憶體」「512G SSD」），再看前面，最後才用數值大小判斷
+      const after = whole.slice(idx + m.length, idx + m.length + 6);
+      const before = whole.slice(Math.max(0, idx - 6), idx);
+      let kind = null;
+      if (/^\s*(?:的)?\s*(記憶體|RAM|ram)/.test(after)) kind = "ram";
+      else if (/^\s*(?:的)?\s*(硬碟|SSD|ssd|儲存|容量)/.test(after)) kind = "storage";
+      else if (/(記憶體|RAM|ram)\s*$/.test(before)) kind = "ram";
+      else if (/(硬碟|SSD|ssd|儲存|容量)\s*$/.test(before)) kind = "storage";
+      else kind = val < 128 ? "ram" : "storage";
+      if (kind === "ram") out.ramMin = Math.max(out.ramMin || 0, val);
+      else out.storageMin = Math.max(out.storageMin || 0, val);
+      return " ";
+    });
+    // 3) 重量
+    t = t.replace(/(\d+(?:\.\d+)?)\s*(?:公斤|kg|KG|Kg)\s*(?:以下|以內|內)?/g, (m, v) => {
+      out.weightMax = parseFloat(v);
+      return " ";
+    });
+    // 4) 螢幕尺寸（第一版不納入條件，只提示）
+    t = t.replace(/(\d+(?:\.\d+)?)\s*(?:吋|寸|英吋|inch)/gi, (m, v) => {
+      out.notes.push("看到螢幕尺寸 " + v + " 吋，第一版不納入篩選與評分");
+      return " ";
+    });
+
+    // 5) 預算
+    if (!out.unlimited) {
+      let m = t.match(new RegExp("(" + NUM + ")\\s*[萬万]\\s*(?:(\\d|[一二兩三四五六七八九])(?!\\d)\\s*千?)?"));
+      if (m) {
+        const base = cnToNum(m[1]);
+        const extra = m[2] ? cnToNum(m[2]) * 1000 : 0;
+        if (!isNaN(base)) out.budget = Math.round(base * 10000 + extra);
+      }
+      if (out.budget == null) {
+        m = t.match(/(\d+(?:\.\d+)?)\s*[kK](?![a-zA-Z])/);
+        if (m) out.budget = Math.round(parseFloat(m[1]) * 1000);
+      }
+      if (out.budget == null) {
+        m = t.match(new RegExp("(" + NUM + ")\\s*千"));
+        if (m && !isNaN(cnToNum(m[1]))) out.budget = Math.round(cnToNum(m[1]) * 1000);
+      }
+      if (out.budget == null) {
+        m = t.match(/(\d{4,6})\s*(?:元|塊|NT|台幣)?/);
+        if (m) out.budget = parseInt(m[1], 10);
+      }
+      if (out.budget != null && (out.budget < 3000 || out.budget > 300000)) {
+        out.notes.push("看到的預算數字 " + out.budget + " 不在合理範圍，請在下方自行填寫");
+        out.budget = null;
+      }
+    }
+
+    // 6) 用途（F 與 E 互斥：提到重度／獨顯就不再當成輕度遊戲）
+    const hit = [];
+    PURPOSE_RULES.forEach(([code, re]) => {
+      if (re.test(t)) hit.push(code);
+    });
+    if (hit.includes("F")) {
+      out.discrete = true;
+      const i = hit.indexOf("E");
+      if (i >= 0) hit.splice(i, 1);
+    }
+    out.purposes = ["A", "B", "C", "D", "E", "F"].filter((c) => hit.includes(c));
+
+    // 7) 品牌、攜帶性
+    BRAND_RULES.forEach(([name, re]) => {
+      if (re.test(t)) out.brands.push(name);
+    });
+    if (/輕薄|輕便|輕巧|通勤|攜帶|隨身|出門|好帶|旅行|出差/.test(t)) out.portable = true;
+
+    return out;
+  }
+
+  root.VEOL.parser = { parseRequirement, normalize, cnToNum, PURPOSE_RULES };
+  if (typeof module !== "undefined") module.exports = root.VEOL.parser;
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+  <script>
+/*
+  過濾與個人化評分。
+  原則（來自基礎資料的開發限制）：
+  1. 缺漏值 null = 未知，不是 0、不是「否」。
+  2. 硬性條件用三值邏輯：符合／不符合／未知。使用者要求某條件時，未知不得當作通過。
+  3. 不用缺漏率取代品質分數，也不把缺漏項目的權重偷偷重新分配給其他項目。
+     做法：每個評分面向分成「已確認」與「可能」兩段 —— 未知項目在「已確認分數」不計分，
+     在「最高可能分數」以滿分計，兩者並列顯示。
+  4. 分數只代表「與使用者設定條件的符合程度」，不是商品客觀品質排名。
+*/
+(function (root) {
+  root.VEOL = root.VEOL || {};
+
+  const CFG = {
+    dims: [
+      { key: "perf", label: "效能／核心規格" },
+      { key: "price", label: "價格符合度" },
+      { key: "weight", label: "重量／攜帶性" },
+      { key: "brand", label: "品牌偏好" },
+      { key: "warranty", label: "保固／售後" }
+    ],
+    // 預設權重取自企畫書第八節；其餘為情境按鈕使用的預設組合，使用者可在確認頁調整。
+    presets: {
+      default: { label: "預設", perf: 35, price: 30, weight: 15, brand: 10, warranty: 10 },
+      commute: { label: "輕薄通勤", perf: 25, price: 25, weight: 30, brand: 10, warranty: 10 },
+      budget: { label: "預算優先", perf: 30, price: 40, weight: 10, brand: 10, warranty: 10 },
+      gaming: { label: "輕度遊戲", perf: 45, price: 30, weight: 5, brand: 10, warranty: 10 }
+    },
+    // 各用途的規格門檻（開發者設定，非實測跑分）。多個用途同時選時取各項最大值。
+    purposes: {
+      A: { label: "上課／文書", ram: 8, storage: 256, cores: 4 },
+      B: { label: "辦公／商務", ram: 16, storage: 256, cores: 6 },
+      C: { label: "剪輯／創作", ram: 16, storage: 512, cores: 8 },
+      D: { label: "開發／AI 輔助", ram: 16, storage: 512, cores: 8 },
+      E: { label: "輕度遊戲", ram: 16, storage: 512, cores: 6 },
+      F: { label: "重度遊戲／GPU 運算", ram: 16, storage: 1000, cores: 8, discrete: true }
+    },
+    weight: { bestKg: 1.0, worstKg: 2.2 },
+    warranty: { fullYears: 3 },
+    price: { minScoreAtBudget: 50 }
+  };
+
+  const KEYS = ["perf", "price", "weight", "brand", "warranty"];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  const FIELD_LABEL = {
+    cpu_model: "CPU 型號", cpu_generation: "CPU 世代", cpu_cores: "CPU 核心數",
+    gpu_model: "顯示晶片", ram_soldered: "記憶體是否焊接", ram_expandable: "記憶體可否擴充",
+    storage_expandable: "儲存可否擴充", screen_panel: "面板類型", screen_refresh_hz: "螢幕更新率",
+    weight_kg: "重量", battery_wh: "電池容量", warranty_years: "保固年限"
+  };
+
+  /* ---------- 權重 ---------- */
+  // 品牌權重只在使用者表達品牌偏好時納入；否則平均分給其他四項（企畫書第八節）。
+  function effectiveWeights(raw, brandActive) {
+    const w = {};
+    KEYS.forEach((k) => (w[k] = Math.max(0, Number(raw && raw[k]) || 0)));
+    if (!brandActive) {
+      const b = w.brand;
+      KEYS.filter((k) => k !== "brand").forEach((k) => (w[k] += b / 4));
+      w.brand = 0;
+    }
+    const sum = KEYS.reduce((s, k) => s + w[k], 0);
+    if (sum <= 0) return effectiveWeights(CFG.presets.default, brandActive);
+    KEYS.forEach((k) => (w[k] = (w[k] * 100) / sum));
+    return w;
+  }
+
+  /* ---------- 規格需求 ---------- */
+  function requirementFor(purposes) {
+    const list = purposes && purposes.length ? purposes : ["A"];
+    const req = { ram: 0, storage: 0, cores: 0, discrete: false };
+    list.forEach((c) => {
+      const p = CFG.purposes[c];
+      if (!p) return;
+      req.ram = Math.max(req.ram, p.ram);
+      req.storage = Math.max(req.storage, p.storage);
+      req.cores = Math.max(req.cores, p.cores);
+      req.discrete = req.discrete || !!p.discrete;
+    });
+    return req;
+  }
+
+  /* ---------- 硬性條件（三值邏輯） ---------- */
+  function check(key, label, known, ok, detail) {
+    return { key, label, status: known ? (ok ? "pass" : "fail") : "unknown", detail };
+  }
+
+  function evaluate(p, st) {
+    const checks = [];
+    const req = requirementFor(st.purposes);
+
+    if (!st.unlimited && st.budget != null) {
+      const v = p.price_twd;
+      checks.push(check("budget", "預算上限 " + fmt(st.budget), v != null, v <= st.budget,
+        v == null ? "價格未提供" : "標價 " + fmt(v)));
+    }
+    if (st.ramMin) {
+      const v = p.ram_gb;
+      checks.push(check("ram", "記憶體 ≥ " + st.ramMin + "GB", v != null, v >= st.ramMin,
+        v == null ? "記憶體未提供" : v + "GB"));
+    }
+    if (st.storageMin) {
+      const v = p.storage_gb;
+      checks.push(check("storage", "儲存 ≥ " + st.storageMin + "GB", v != null, v >= st.storageMin,
+        v == null ? "儲存容量未提供" : v + "GB"));
+    }
+    if (st.weightMax) {
+      const v = p.weight_kg;
+      checks.push(check("weight", "重量 ≤ " + st.weightMax + "kg", v != null, v <= st.weightMax,
+        v == null ? "重量未提供／待確認" : v + "kg"));
+    }
+    if (st.discrete || req.discrete) {
+      const v = p.gpu && p.gpu.discrete_present;
+      checks.push(check("discrete", "具獨立顯示卡", v != null, v === true,
+        v == null ? "是否有獨顯未提供／待確認" : v ? "有獨顯" : "只有內建顯示"));
+    }
+
+    let status = "pass";
+    if (checks.some((c) => c.status === "fail")) status = "fail";
+    else if (checks.some((c) => c.status === "unknown")) status = "unknown";
+    return { status, checks };
+  }
+
+  /* ---------- 評分 ---------- */
+  function perfItems(p, req) {
+    const items = [];
+    const ramV = p.ram_gb;
+    items.push({ label: "記憶體", target: req.ram + "GB", value: ramV == null ? null : ramV + "GB",
+      score: ramV == null ? null : clamp(ramV / req.ram, 0, 1) * 100 });
+    const stV = p.storage_gb;
+    items.push({ label: "儲存容量", target: req.storage + "GB", value: stV == null ? null : stV + "GB",
+      score: stV == null ? null : clamp(stV / req.storage, 0, 1) * 100 });
+    const coV = p.cpu && p.cpu.cores_total;
+    items.push({ label: "CPU 核心數", target: req.cores + " 核", value: coV == null ? null : coV + " 核",
+      score: coV == null ? null : clamp(coV / req.cores, 0, 1) * 100 });
+    if (req.discrete) {
+      const d = p.gpu && p.gpu.discrete_present;
+      items.push({ label: "獨立顯示卡", target: "需要", value: d == null ? null : d ? "有" : "無",
+        score: d == null ? null : d ? 100 : 0 });
+    }
+    return items;
+  }
+
+  function dimResult(key, weight, items) {
+    // items: [{score|null, w}]；回傳 low（未知不計分）與 up（未知以滿分計）
+    const total = items.reduce((s, i) => s + i.w, 0) || 1;
+    let low = 0, unk = 0;
+    items.forEach((i) => {
+      if (i.score == null) unk += i.w * 100;
+      else low += i.w * i.score;
+    });
+    low /= total;
+    const up = low + unk / total;
+    return { key, weight, low, up, known: unk === 0 };
+  }
+
+  function scoreProduct(p, st, w, catalog) {
+    const req = requirementFor(st.purposes);
+    const dims = [];
+    const detail = {};
+
+    // 效能
+    const pi = perfItems(p, req);
+    detail.perf = pi;
+    dims.push(dimResult("perf", w.perf, pi.map((i) => ({ w: 1, score: i.score }))));
+
+    // 價格
+    let priceScore = null;
+    if (p.price_twd != null) {
+      if (!st.unlimited && st.budget) {
+        const ratio = p.price_twd / st.budget;
+        priceScore = clamp(100 - (100 - CFG.price.minScoreAtBudget) * ratio, 0, 100);
+      } else {
+        const span = catalog.maxPrice - catalog.minPrice;
+        priceScore = span > 0 ? ((catalog.maxPrice - p.price_twd) / span) * 100 : 100;
+      }
+    }
+    dims.push(dimResult("price", w.price, [{ w: 1, score: priceScore }]));
+    detail.price = priceScore;
+
+    // 重量
+    const kg = p.weight_kg;
+    const wScore = kg == null ? null
+      : clamp((CFG.weight.worstKg - kg) / (CFG.weight.worstKg - CFG.weight.bestKg), 0, 1) * 100;
+    dims.push(dimResult("weight", w.weight, [{ w: 1, score: wScore }]));
+    detail.weight = wScore;
+
+    // 品牌（僅在使用者表達偏好時有權重）
+    const brandScore = st.brands && st.brands.length
+      ? st.brands.some((b) => b.toLowerCase() === String(p.brand).toLowerCase()) ? 100 : 0
+      : null;
+    dims.push(dimResult("brand", w.brand, [{ w: 1, score: st.brands && st.brands.length ? brandScore : 100 }]));
+    detail.brand = brandScore;
+
+    // 保固
+    const yrs = p.warranty && p.warranty.years;
+    const wyScore = yrs == null ? null : clamp(yrs / CFG.warranty.fullYears, 0, 1) * 100;
+    dims.push(dimResult("warranty", w.warranty, [{ w: 1, score: wyScore }]));
+    detail.warranty = wyScore;
+
+    let low = 0, up = 0;
+    dims.forEach((d) => {
+      low += (d.weight / 100) * d.low;
+      up += (d.weight / 100) * d.up;
+    });
+    return { low, up, dims, detail, req };
+  }
+
+  /* ---------- 排序整體流程 ---------- */
+  function rank(products, st) {
+    const brandActive = !!(st.brands && st.brands.length);
+    const w = effectiveWeights(st.weights || CFG.presets.default, brandActive);
+    const prices = products.map((p) => p.price_twd).filter((v) => v != null);
+    const catalog = { minPrice: Math.min.apply(null, prices), maxPrice: Math.max.apply(null, prices) };
+    const sortKey = st.sort === "up" ? "up" : "low";
+    const otherKey = sortKey === "low" ? "up" : "low";
+
+    const rows = products.map((p) => {
+      const ev = evaluate(p, st);
+      const sc = scoreProduct(p, st, w, catalog);
+      return { p, ev, sc };
+    });
+    const cmp = (a, b) =>
+      b.sc[sortKey] - a.sc[sortKey] || b.sc[otherKey] - a.sc[otherKey] ||
+      (a.p.price_twd || 1e9) - (b.p.price_twd || 1e9);
+
+    return {
+      weights: w,
+      qualified: rows.filter((r) => r.ev.status === "pass").sort(cmp),
+      unknown: rows.filter((r) => r.ev.status === "unknown").sort(cmp),
+      failed: rows.filter((r) => r.ev.status === "fail").sort(cmp)
+    };
+  }
+
+  /* ---------- 推薦理由（由計算結果產生，不含任何資料集以外的主張） ---------- */
+  function fmt(n) {
+    return "NT$" + Math.round(n).toLocaleString("en-US");
+  }
+
+  function explain(row, st) {
+    const { p, sc } = row;
+    const out = [];
+    if (p.price_twd != null) {
+      if (!st.unlimited && st.budget) {
+        const gap = st.budget - p.price_twd;
+        out.push("標價 " + fmt(p.price_twd) + (gap >= 0 ? "，低於預算 " + fmt(gap) : "，超出預算 " + fmt(-gap)));
+      } else out.push("標價 " + fmt(p.price_twd));
+    }
+    const perf = sc.detail.perf;
+    const met = perf.filter((i) => i.score === 100).map((i) => i.label + " " + i.value);
+    const short = perf.filter((i) => i.score != null && i.score < 100).map((i) => i.label + " " + i.value + "（建議 " + i.target + "）");
+    if (met.length) out.push("達標：" + met.join("、"));
+    if (short.length) out.push("未達建議門檻：" + short.join("、"));
+    const unknownLabels = [];
+    perf.forEach((i) => i.score == null && unknownLabels.push(i.label));
+    if (sc.detail.weight == null) unknownLabels.push("重量");
+    if (sc.detail.warranty == null) unknownLabels.push("保固");
+    if (unknownLabels.length) out.push("未提供／待確認：" + unknownLabels.join("、") + "（不計分，列入可能區間）");
+    return out;
+  }
+
+  root.VEOL.scoring = {
+    CFG, KEYS, FIELD_LABEL, effectiveWeights, requirementFor, evaluate, scoreProduct, rank, explain, fmt
+  };
+  if (typeof module !== "undefined") module.exports = root.VEOL.scoring;
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+  <script>
+(function(r){r.VEOL=r.VEOL||{};r.VEOL.products=[{"id": "veol-tw-001", "name": "Acer Aspire Lite AL14-36P-C0HB (Intel Celeron N4500/8GB/128GB)", "brand": "Acer", "model": "AL14-36P-C0HB", "sku": "NX.DQYTA.001", "price_twd": 9999, "price_band": "under_15000", "cpu": {"model": "Intel Celeron N4500", "generation": null, "cores_total": 2, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": "Intel UHD Graphics", "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 8, "ram": {"type": "DDR4", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 128, "storage": {"type": "SSD", "interface": "PCIe NVMe 3.0", "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": 1.5, "screen_inch": 14, "screen": {"resolution": "1920x1200", "panel_type": "IPS", "refresh_hz": 60, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": 2, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/al14-36p-c0hb", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/al14-36p-c0hb", "price_source_url": "https://store.acer.com/zh-tw/al14-36p-c0hb", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["8GB RAM、128GB SSD 為此 SKU 公開配置", "14 吋 1920x1200 螢幕、60Hz", "官方標示機身重量 1.5kg"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證", "標配僅 8GB；不保證大型專案、多容器或大型素材工作負載"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量1.5kg，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "受限", "reason": "8GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "受限", "reason": "8GB RAM／128GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 12, "total_count": 17, "ratio": 0.7059, "missing_fields": ["cpu_generation", "ram_soldered", "ram_expandable", "storage_expandable", "battery_wh"], "publication_ready": false}}, {"id": "veol-tw-002", "name": "Acer Aspire Lite AL14-32P-C4QP (Intel N150/8GB/512GB)", "brand": "Acer", "model": "AL14-32P-C4QP", "sku": "NX.D1TTA.001", "price_twd": 17900, "price_band": "15000_19999", "cpu": {"model": "Intel N150", "generation": "N-Series", "cores_total": 4, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": null, "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 8, "ram": {"type": "LPDDR5", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": null, "screen_inch": 14, "screen": {"resolution": "1920x1200", "panel_type": "IPS", "refresh_hz": 60, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": null, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/laptops/aspire", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/laptops/aspire", "price_source_url": "https://store.acer.com/zh-tw/laptops/aspire", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["8GB RAM、512GB SSD 為此 SKU 公開配置", "14 吋 1920x1200 螢幕、60Hz"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證", "標配僅 8GB；不保證大型專案、多容器或大型素材工作負載"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量待確認，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "受限", "reason": "8GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "受限", "reason": "8GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 10, "total_count": 17, "ratio": 0.5882, "missing_fields": ["gpu_model", "ram_soldered", "ram_expandable", "storage_expandable", "weight_kg", "battery_wh", "warranty_years"], "publication_ready": false}}, {"id": "veol-tw-003", "name": "Acer Aspire Lite AL15-49P-R1J4 (AMD Ryzen 7 7730U/8GB/512GB)", "brand": "Acer", "model": "AL15-49P-R1J4", "sku": "NX.DVUTA.001", "price_twd": 21900, "price_band": "20000_24999", "cpu": {"model": "AMD Ryzen 7 7730U", "generation": null, "cores_total": 8, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": "AMD Radeon Graphics", "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 8, "ram": {"type": "DDR4", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": null, "screen_inch": 15.6, "screen": {"resolution": "1920x1080", "panel_type": null, "refresh_hz": 60, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": null, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/laptops/aspire", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/laptops/aspire", "price_source_url": "https://store.acer.com/zh-tw/laptops/aspire", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["8GB RAM、512GB SSD 為此 SKU 公開配置", "15.6 吋 1920x1080 螢幕、60Hz"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證", "標配僅 8GB；不保證大型專案、多容器或大型素材工作負載"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量待確認，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "受限", "reason": "8GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "受限", "reason": "8GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 9, "total_count": 17, "ratio": 0.5294, "missing_fields": ["cpu_generation", "ram_soldered", "ram_expandable", "storage_expandable", "screen_panel", "weight_kg", "battery_wh", "warranty_years"], "publication_ready": false}}, {"id": "veol-tw-004", "name": "Acer Aspire Lite AL14-72P-59YA (Intel Core 5 210H/8GB/512GB)", "brand": "Acer", "model": "AL14-72P-59YA", "sku": "NX.DXVTA.001", "price_twd": 23900, "price_band": "20000_24999", "cpu": {"model": "Intel Core 5 210H", "generation": "Series 2", "cores_total": 8, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": null, "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 8, "ram": {"type": "DDR4", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": 1.45, "screen_inch": 14, "screen": {"resolution": "1920x1200", "panel_type": "IPS", "refresh_hz": 60, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": 2, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/al14-72p-59ya", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/al14-72p-59ya", "price_source_url": "https://store.acer.com/zh-tw/al14-72p-59ya", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["8GB RAM、512GB SSD 為此 SKU 公開配置", "14 吋 1920x1200 螢幕、60Hz", "官方標示機身重量 1.45kg"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證", "標配僅 8GB；不保證大型專案、多容器或大型素材工作負載"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量1.45kg，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "受限", "reason": "8GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "受限", "reason": "8GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 12, "total_count": 17, "ratio": 0.7059, "missing_fields": ["gpu_model", "ram_soldered", "ram_expandable", "storage_expandable", "battery_wh"], "publication_ready": false}}, {"id": "veol-tw-005", "name": "Acer Aspire Lite AL14-61P-R2G3 (AMD Ryzen 5 330/16GB/512GB)", "brand": "Acer", "model": "AL14-61P-R2G3", "sku": "NX.DUKTA.002", "price_twd": 28900, "price_band": "25000_29999", "cpu": {"model": "AMD Ryzen 5 330", "generation": null, "cores_total": 4, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": "AMD Radeon Graphics", "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 16, "ram": {"type": "LPDDR5", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": null, "screen_inch": 14, "screen": {"resolution": "1920x1200", "panel_type": "IPS", "refresh_hz": 120, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": null, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/laptops/aspire", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/laptops/aspire", "price_source_url": "https://store.acer.com/zh-tw/laptops/aspire", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["16GB RAM、512GB SSD 為此 SKU 公開配置", "14 吋 1920x1200 螢幕、120Hz"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量待確認，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "條件式適合", "reason": "16GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "條件式適合", "reason": "16GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 10, "total_count": 17, "ratio": 0.5882, "missing_fields": ["cpu_generation", "ram_soldered", "ram_expandable", "storage_expandable", "weight_kg", "battery_wh", "warranty_years"], "publication_ready": false}}, {"id": "veol-tw-006", "name": "Acer Aspire Lite AL16-63P-R7AF (AMD Ryzen AI 5 330/16GB/512GB)", "brand": "Acer", "model": "AL16-63P-R7AF", "sku": "NX.DXBTA.001", "price_twd": 29900, "price_band": "25000_29999", "cpu": {"model": "AMD Ryzen AI 5 330", "generation": "Ryzen AI 300", "cores_total": 4, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": "AMD Radeon Graphics", "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 16, "ram": {"type": "LPDDR5", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": 1.7, "screen_inch": 16, "screen": {"resolution": "1920x1200", "panel_type": "IPS", "refresh_hz": 120, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": null, "region": "TW", "terms": "未提供／待確認", "raw": "TWN 保養卡"}, "source_url": "https://store.acer.com/zh-tw/al16-63p-r7af", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/al16-63p-r7af", "price_source_url": "https://store.acer.com/zh-tw/al16-63p-r7af", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["16GB RAM、512GB SSD 為此 SKU 公開配置", "16 吋 1920x1200 螢幕、120Hz", "官方標示機身重量 1.7kg"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量1.7kg，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "條件式適合", "reason": "16GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "條件式適合", "reason": "16GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 12, "total_count": 17, "ratio": 0.7059, "missing_fields": ["ram_soldered", "ram_expandable", "storage_expandable", "battery_wh", "warranty_years"], "publication_ready": false}}, {"id": "veol-tw-007", "name": "Acer Aspire Lite AL15-57P-50AK (Intel Core Ultra 5 226V/16GB/512GB)", "brand": "Acer", "model": "AL15-57P-50AK", "sku": "NX.DU2TA.001", "price_twd": 29900, "price_band": "25000_29999", "cpu": {"model": "Intel Core Ultra 5 226V", "generation": null, "cores_total": null, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": "Intel Arc 130V", "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 16, "ram": {"type": "LPDDR5X", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": null, "screen_inch": 15.6, "screen": {"resolution": "1920x1080", "panel_type": null, "refresh_hz": 60, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": null, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/laptops/aspire", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/laptops/aspire", "price_source_url": "https://store.acer.com/zh-tw/laptops/aspire", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["16GB RAM、512GB SSD 為此 SKU 公開配置", "15.6 吋 1920x1080 螢幕、60Hz"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證", "CPU 核心數或名稱有疑義，待原廠技術資料交叉確認"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量待確認，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "條件式適合", "reason": "16GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "條件式適合", "reason": "16GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 8, "total_count": 17, "ratio": 0.4706, "missing_fields": ["cpu_generation", "cpu_cores", "ram_soldered", "ram_expandable", "storage_expandable", "screen_panel", "weight_kg", "battery_wh", "warranty_years"], "publication_ready": false}}, {"id": "veol-tw-008", "name": "Acer Aspire Lite AL16-64P-R054 (AMD Ryzen AI 5 430/16GB/512GB)", "brand": "Acer", "model": "AL16-64P-R054", "sku": "NX.DYSTA.001", "price_twd": 30900, "price_band": "30000_39999", "cpu": {"model": "AMD Ryzen AI 5 430", "generation": "Ryzen AI 400", "cores_total": 4, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": "AMD Radeon 840M", "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 16, "ram": {"type": "LPDDR5", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": null, "screen_inch": 16, "screen": {"resolution": "1920x1200", "panel_type": "IPS", "refresh_hz": 120, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": null, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/laptops/aspire", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/laptops/aspire", "price_source_url": "https://store.acer.com/zh-tw/laptops/aspire", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["16GB RAM、512GB SSD 為此 SKU 公開配置", "16 吋 1920x1200 螢幕、120Hz"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量待確認，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "條件式適合", "reason": "16GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "條件式適合", "reason": "16GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 11, "total_count": 17, "ratio": 0.6471, "missing_fields": ["ram_soldered", "ram_expandable", "storage_expandable", "weight_kg", "battery_wh", "warranty_years"], "publication_ready": false}}, {"id": "veol-tw-009", "name": "Acer Aspire Spin ASP15-61N-R27Y (AMD Ryzen 5 330/16GB/512GB)", "brand": "Acer", "model": "ASP15-61N-R27Y", "sku": "NX.DY8TA.001", "price_twd": 30900, "price_band": "30000_39999", "cpu": {"model": "AMD Ryzen 5 330", "generation": null, "cores_total": 4, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": null, "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 16, "ram": {"type": "LPDDR5", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": null, "screen_inch": 15.3, "screen": {"resolution": "1920x1200", "panel_type": "IPS", "refresh_hz": 120, "touch": true, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": null, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/laptops/aspire", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/laptops/aspire", "price_source_url": "https://store.acer.com/zh-tw/laptops/aspire", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["16GB RAM、512GB SSD 為此 SKU 公開配置", "15.3 吋 1920x1200 螢幕、120Hz"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量待確認，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "條件式適合", "reason": "16GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "條件式適合", "reason": "16GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 9, "total_count": 17, "ratio": 0.5294, "missing_fields": ["cpu_generation", "gpu_model", "ram_soldered", "ram_expandable", "storage_expandable", "weight_kg", "battery_wh", "warranty_years"], "publication_ready": false}}, {"id": "veol-tw-010", "name": "Acer Aspire Lite AL15-74P-712A (Intel Core Ultra 7 155H/16GB/512GB)", "brand": "Acer", "model": "AL15-74P-712A", "sku": "NX.DRVTA.001", "price_twd": 31900, "price_band": "30000_39999", "cpu": {"model": "Intel Core Ultra 7 155H", "generation": "Series 1", "cores_total": 16, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": "Intel Arc Graphics", "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 16, "ram": {"type": "LPDDR5", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": null, "screen_inch": 15.6, "screen": {"resolution": "1920x1080", "panel_type": null, "refresh_hz": 60, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": null, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/laptops/aspire", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/laptops/aspire", "price_source_url": "https://store.acer.com/zh-tw/laptops/aspire", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["16GB RAM、512GB SSD 為此 SKU 公開配置", "15.6 吋 1920x1080 螢幕、60Hz"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量待確認，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "條件式適合", "reason": "16GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "條件式適合", "reason": "16GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 10, "total_count": 17, "ratio": 0.5882, "missing_fields": ["ram_soldered", "ram_expandable", "storage_expandable", "screen_panel", "weight_kg", "battery_wh", "warranty_years"], "publication_ready": false}}, {"id": "veol-tw-011", "name": "Acer Aspire Lite AL15-57P-79JL (Intel Core Ultra 7 256V/16GB/512GB)", "brand": "Acer", "model": "AL15-57P-79JL", "sku": "NX.DU2TA.002", "price_twd": 32900, "price_band": "30000_39999", "cpu": {"model": "Intel Core Ultra 7 256V", "generation": null, "cores_total": null, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": "Intel Arc 140V", "discrete_model": null, "discrete_present": false, "vram_gb": null, "tgp_w": null}, "ram_gb": 16, "ram": {"type": "LPDDR5X", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": null, "screen_inch": 15.6, "screen": {"resolution": "1920x1080", "panel_type": "TFT LCD; IPS/TN未確認", "refresh_hz": 60, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": null, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/laptops/aspire", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/laptops/aspire", "price_source_url": "https://store.acer.com/zh-tw/laptops/aspire", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["16GB RAM、512GB SSD 為此 SKU 公開配置", "15.6 吋 1920x1080 螢幕、60Hz"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證", "CPU 核心數或名稱有疑義，待原廠技術資料交叉確認"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量待確認，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "條件式適合", "reason": "16GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "條件式適合", "reason": "16GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 9, "total_count": 17, "ratio": 0.5294, "missing_fields": ["cpu_generation", "cpu_cores", "ram_soldered", "ram_expandable", "storage_expandable", "weight_kg", "battery_wh", "warranty_years"], "publication_ready": false}}, {"id": "veol-tw-012", "name": "Acer Aspire Go AG15-I51P-74LC (C7-350（來源原文）/16GB/512GB)", "brand": "Acer", "model": "AG15-I51P-74LC", "sku": "NX.W04TA.003", "price_twd": 37900, "price_band": "30000_39999", "cpu": {"model": "C7-350（來源原文）", "generation": null, "cores_total": null, "performance_cores": null, "efficiency_cores": null, "threads": null}, "gpu": {"integrated_model": null, "discrete_model": null, "discrete_present": null, "vram_gb": null, "tgp_w": null}, "ram_gb": 16, "ram": {"type": "DDR5", "soldered": null, "expandable": null, "slots_total": null, "max_gb": null}, "storage_gb": 512, "storage": {"type": "SSD", "interface": null, "slots_total": null, "slots_free": null, "expandable": null}, "weight_kg": null, "screen_inch": 15.6, "screen": {"resolution": "1920x1080", "panel_type": "IPS", "refresh_hz": null, "touch": null, "srgb_percent": null, "brightness_nits": null}, "battery": {"capacity_wh": null}, "warranty": {"years": null, "region": "TW", "terms": "未提供／待確認", "raw": null}, "source_url": "https://store.acer.com/zh-tw/laptops/aspire", "source_name": "Acer 台灣官方商城", "official_spec_url": "https://store.acer.com/zh-tw/laptops/aspire", "price_source_url": "https://store.acer.com/zh-tw/laptops/aspire", "captured_at": "2026-11-10", "availability": {"status": "listed_in_stock", "checkout_verified": false}, "price_verification": {"status": "page_display_verified", "cross_checked": false, "is_market_lowest": null}, "pros": ["16GB RAM、512GB SSD 為此 SKU 公開配置", "15.6 吋 1920x1080 螢幕"], "cons": ["RAM 焊接及擴充、SSD 插槽／擴充、電池 Wh 未提供／待確認", "螢幕色域、亮度、色準及實測散熱／續航未查證", "CPU 核心數或名稱有疑義，待原廠技術資料交叉確認"], "summary": "官方商城列有庫存的待補查資料；不是完成交叉驗證的市場代表樣本。", "scenarios": {"A": {"suitability": "條件式適合", "reason": "可作基本文書與上課；重量待確認，電池容量與實測續航未知，不能確認全天攜帶體驗。"}, "B": {"suitability": "條件式適合", "reason": "16GB 記憶體；商務軟體、外接螢幕與資安管理需求須逐項驗證。"}, "C": {"suitability": "待確認", "reason": "可先評估基礎編修；色域、色準、編解碼及素材工作負載未驗證，不列為專業創作已合格。"}, "D": {"suitability": "條件式適合", "reason": "16GB RAM／512GB SSD 可作開發資源初篩；雲端 AI 與本機模型分開評估，未確認 CUDA 或模型容量需求。"}, "E": {"suitability": "待確認", "reason": "缺遊戲名稱、解析度／畫質及實測 FPS；不由內顯名稱直接給效能分數。"}, "F": {"suitability": "未證實適合", "reason": "未確認獨顯、專用 VRAM、TGP 及持續負載表現，不納入已驗證重度遊戲／GPU 運算清單。"}}, "data_completeness": {"status": "partial", "definition": "17個硬體欄位已知值比例；不代表來源正確率或上架資格", "known_count": 6, "total_count": 17, "ratio": 0.3529, "missing_fields": ["cpu_model", "cpu_generation", "cpu_cores", "gpu_model", "ram_soldered", "ram_expandable", "storage_expandable", "screen_refresh_hz", "weight_kg", "battery_wh", "warranty_years"], "publication_ready": false}}];})(typeof window!=='undefined'?window:globalThis);
+</script>
+  <script>
+/* 共用：導覽列／頁尾、狀態（URL 參數）、格式化與規格顯示 */
+(function (root) {
+  root.VEOL = root.VEOL || {};
+  const V = root.VEOL;
+  const S = () => V.scoring;
+
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const UNKNOWN = '<span class="unknown">未提供／待確認</span>';
+  const money = (n) => "NT$" + Math.round(n).toLocaleString("en-US");
+
+  /* ---------- 情境按鈕（首頁） ---------- */
+  const SCENARIOS = [
+    { title: "剪輯＋上課", desc: "25,000 元以下，影片剪輯與日常上課", q: "我想找一台 25,000 元以下、適合剪輯與上課的筆電。", pre: "default" },
+    { title: "輕薄通勤", desc: "3 萬內、1.5 公斤以下，上課辦公天天帶", q: "預算 3 萬以內、1.5 公斤以下，每天通勤帶去上課或辦公的輕薄筆電", pre: "commute" },
+    { title: "輕度遊戲", desc: "35,000 元內，16GB 記憶體以上", q: "預算 35,000 元以內、想玩輕度遊戲、16G 記憶體以上", pre: "gaming" },
+    { title: "預算 2 萬內", desc: "基本文書與上課，價格優先", q: "2 萬元以內、基本文書與上課用的筆電", pre: "budget" },
+    { title: "大學生入門", desc: "25,000 內、512GB 以上，報告與上課", q: "大學生上課、寫報告用，預算 25,000 以內，512G 以上", pre: "budget" }
+  ];
+
+  /* ---------- 狀態 ⇄ URL 參數 ---------- */
+  function stateFromParams(sp) {
+    const P = V.parser, C = S().CFG;
+    const q = sp.get("q") || "";
+    const parsed = P.parseRequirement(q);
+    const num = (k) => (sp.has(k) && sp.get(k) !== "" ? Number(sp.get(k)) : undefined);
+    const has = (k) => sp.has(k);
+
+    const st = {
+      q,
+      budget: has("b") ? num("b") : parsed.budget,
+      unlimited: has("u") ? sp.get("u") === "1" : parsed.unlimited,
+      purposes: has("p") ? sp.get("p").split(",").filter(Boolean) : parsed.purposes,
+      ramMin: has("r") ? num("r") || null : parsed.ramMin,
+      storageMin: has("s") ? num("s") || null : parsed.storageMin,
+      weightMax: has("w") ? num("w") || null : parsed.weightMax,
+      brands: has("br") ? sp.get("br").split(",").filter(Boolean) : parsed.brands,
+      discrete: has("d") ? sp.get("d") === "1" : parsed.discrete,
+      sort: sp.get("sort") === "up" ? "up" : "low",
+      notes: parsed.notes,
+      portable: parsed.portable
+    };
+    if (st.unlimited) st.budget = null;
+    if (st.budget != null && isNaN(st.budget)) st.budget = null;
+
+    let pre = sp.get("pre");
+    if (!pre || !C.presets[pre]) pre = parsed.portable ? "commute" : st.purposes.includes("E") ? "gaming" : "default";
+    st.pre = pre;
+    if (has("wt")) {
+      const a = sp.get("wt").split(",").map(Number);
+      st.weights = { perf: a[0], price: a[1], weight: a[2], brand: a[3], warranty: a[4] };
+    } else st.weights = Object.assign({}, C.presets[pre]);
+    delete st.weights.label;
+    return st;
+  }
+
+  function paramsFromState(st, extra) {
+    const sp = new URLSearchParams();
+    if (st.q) sp.set("q", st.q);
+    if (st.unlimited) sp.set("u", "1");
+    else if (st.budget != null) sp.set("b", String(st.budget));
+    sp.set("p", (st.purposes || []).join(","));
+    sp.set("r", st.ramMin || "");
+    sp.set("s", st.storageMin || "");
+    sp.set("w", st.weightMax || "");
+    sp.set("br", (st.brands || []).join(","));
+    if (st.discrete) sp.set("d", "1");
+    sp.set("pre", st.pre || "default");
+    const w = st.weights || {};
+    sp.set("wt", ["perf", "price", "weight", "brand", "warranty"].map((k) => Math.round(w[k] || 0)).join(","));
+    if (st.sort === "up") sp.set("sort", "up");
+    if (extra) Object.keys(extra).forEach((k) => sp.set(k, extra[k]));
+    return sp;
+  }
+
+  /* ---------- 資料說明 ---------- */
+  function dataMeta() {
+    const ps = V.products;
+    const brands = [...new Set(ps.map((p) => p.brand))];
+    const dates = ps.map((p) => p.captured_at).sort();
+    const staging = ps.some((p) => p.data_completeness && p.data_completeness.publication_ready === false);
+    return { count: ps.length, brands, from: dates[0], to: dates[dates.length - 1], staging, sources: [...new Set(ps.map((p) => p.source_name))] };
+  }
+  function dataNotice() {
+    const m = dataMeta();
+    const brandText = m.brands.length === 1 ? "單一品牌（" + m.brands[0] + "）" : m.brands.join("、") + " 等品牌";
+    return '<div class="notice" role="note"><strong>資料範圍：</strong>目前收錄 ' + m.count + " 款筆電，" + esc(brandText) + "，來源為" +
+      esc(m.sources.join("、")) + "，" + esc(m.from === m.to ? m.from : m.from + "～" + m.to) + " 擷取的頁面標價。" +
+      (m.staging ? "這是<strong>暫存資料</strong>：尚未做第二來源交叉驗證，" : "") +
+      "不代表全市場，也不是最低價。價格與庫存請以來源網站為準。</div>";
+  }
+
+  /* ---------- 規格顯示 ---------- */
+  function missingSet(p) {
+    return new Set((p.data_completeness && p.data_completeness.missing_fields) || []);
+  }
+  function specRows(p) {
+    const miss = missingSet(p);
+    const U = UNKNOWN;
+    const rows = [];
+    rows.push(["價格", p.price_twd != null ? money(p.price_twd) + '<div class="small muted">頁面標價，' + esc(p.captured_at) + " 擷取</div>" : U]);
+
+    const cpuName = p.cpu && p.cpu.model;
+    let cpu = cpuName ? esc(cpuName) : null;
+    if (cpu && miss.has("cpu_model")) cpu += ' <span class="unknown">待確認</span>';
+    if (cpu && p.cpu.cores_total) cpu += '<div class="small muted">' + p.cpu.cores_total + " 核</div>";
+    else if (cpu) cpu += '<div class="small muted">核心數：未提供／待確認</div>';
+    rows.push(["處理器", cpu || U]);
+
+    let gpu = null;
+    if (p.gpu && p.gpu.discrete_model) gpu = esc(p.gpu.discrete_model) + "（獨顯）";
+    else if (p.gpu && p.gpu.integrated_model) gpu = esc(p.gpu.integrated_model) + "（內建）";
+    if (!gpu && p.gpu && p.gpu.discrete_present === false) gpu = "內建顯示（型號未提供）";
+    rows.push(["顯示晶片", gpu || U]);
+
+    rows.push(["記憶體", p.ram_gb != null ? p.ram_gb + "GB" + (p.ram && p.ram.type ? " " + esc(p.ram.type) : "") : U]);
+    rows.push(["儲存", p.storage_gb != null ? p.storage_gb + "GB" + (p.storage && p.storage.type ? " " + esc(p.storage.type) : "") : U]);
+
+    const sc = p.screen || {};
+    const scr = [p.screen_inch ? p.screen_inch + " 吋" : null, sc.resolution, sc.panel_type, sc.refresh_hz ? sc.refresh_hz + "Hz" : null].filter(Boolean).map(esc);
+    rows.push(["螢幕", scr.length ? scr.join("・") : U]);
+    rows.push(["重量", p.weight_kg != null ? p.weight_kg + " kg" : U]);
+    rows.push(["電池", p.battery && p.battery.capacity_wh != null ? p.battery.capacity_wh + " Wh" : U]);
+    rows.push(["保固", p.warranty && p.warranty.years != null ? p.warranty.years + " 年" + (p.warranty.region ? "（" + esc(p.warranty.region) + "）" : "") : U]);
+    const dc = p.data_completeness;
+    rows.push(["資料完整度", dc ? Math.round(dc.ratio * 100) + "%<div class=\"small muted\">" + dc.known_count + "/" + dc.total_count + " 個硬體欄位已知</div>" : U]);
+    return rows;
+  }
+
+  function scoreBar(sc) {
+    const low = Math.round(sc.low), up = Math.round(sc.up);
+    return '<div class="score"><div class="score-bar" role="img" aria-label="已確認分數 ' + low + '，最高可能 ' + up + '">' +
+      '<div class="poss" style="width:' + up + '%"></div><div class="conf" style="width:' + low + '%"></div></div>' +
+      '<div class="score-nums"><span>已確認 <b>' + low + "</b></span><span>最高可能 <b>" + up + "</b></span></div></div>";
+  }
+
+  function breakdownTable(sc, weights) {
+    const C = S().CFG;
+    const label = (k) => C.dims.find((d) => d.key === k).label;
+    const cell = (v) => (v == null ? '<span class="unknown">未知</span>' : Math.round(v));
+    let h = '<div class="table-wrap"><table class="small-table"><thead><tr><th>面向</th><th>占比</th><th>已確認</th><th>最高可能</th></tr></thead><tbody>';
+    sc.dims.forEach((d) => {
+      if (d.weight <= 0) return;
+      h += "<tr><td>" + esc(label(d.key)) + "</td><td>" + d.weight.toFixed(1) + "%</td><td>" + (d.known ? Math.round(d.low) : Math.round(d.low) + " <span class=\"muted\">（未知項不計）</span>") + "</td><td>" + Math.round(d.up) + "</td></tr>";
+    });
+    h += "</tbody></table></div>";
+    const items = sc.detail.perf.map((i) => "<li>" + esc(i.label) + "：" + (i.value == null ? UNKNOWN : esc(i.value)) + " <span class=\"muted\">（門檻 " + esc(i.target) + "）</span></li>").join("");
+    h += '<p class="small" style="margin:10px 0 4px"><b>效能面向使用的規格</b></p><ul class="small" style="margin:0;padding-left:1.1em">' + items + "</ul>";
+    return h;
+  }
+
+  const LOGO = '<svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect x="2" y="2" width="36" height="36" rx="9" fill="#15161b" stroke="#ff9f43" stroke-width="2.5"/><path d="M11 13 L20 28" fill="none" stroke="#ff5fa2" stroke-width="4" stroke-linecap="round"/><path d="M20 28 L29 13" fill="none" stroke="#c877ff" stroke-width="4" stroke-linecap="round"/><circle cx="31" cy="9.5" r="2.6" fill="#8a88ff"/></svg>';
+  /* ---------- 導覽列／頁尾 ---------- */
+  function renderChrome(active) {
+    const links = [
+      ["how", "如何運作", "index.html#how"],
+      ["start", "開始選購", "advisor.html"],
+      ["data", "資料原則", "about.html#data"],
+      ["about", "關於我們", "about.html"]
+    ];
+    const hdr = document.getElementById("site-header");
+    if (hdr) {
+      hdr.className = "site-header";
+      hdr.innerHTML = '<div class="container nav"><a class="brand" href="index.html" aria-label="VEOL 首頁">' + LOGO + '<span>VEOL</span></a>' +
+        '<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">選單</button>' +
+        '<nav id="nav-menu" class="nav-menu" aria-label="主要導覽">' +
+        links.map((l) => '<a href="' + l[2] + '"' + (active === l[0] ? ' aria-current="page"' : "") + ">" + l[1] + "</a>").join("") + "</nav></div>";
+      const btn = hdr.querySelector(".nav-toggle"), menu = hdr.querySelector(".nav-menu");
+      btn.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      menu.addEventListener("click", (e) => { if (e.target.closest("a")) { menu.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); } });
+    }
+    const ftr = document.getElementById("site-footer");
+    if (ftr) {
+      const url = V.config.FEEDBACK_FORM_URL;
+      const fb = url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">回饋：推薦不適合／資料錯誤／來源失效</a>'
+        : '<a href="about.html#feedback">回饋表單（尚未設定）</a>';
+      ftr.className = "site-footer";
+      ftr.innerHTML = '<div class="container foot"><div><a class="brand" href="index.html">' + LOGO + '<span>VEOL</span></a>' +
+        '<p class="small" style="margin:10px 0 0;max-width:34em">協助你比較規格、找出較適合自己的筆電。不保證最低價，也不提供下單或代購。</p></div>' +
+        '<div class="links">' + fb + '<a href="about.html#data">資料來源與使用說明</a><a href="about.html#scoring">評分方式</a><span>© 2026 VEOL</span></div></div>';
+    }
+  }
+
+  V.ui = { LOGO, esc, UNKNOWN, money, SCENARIOS, stateFromParams, paramsFromState, dataMeta, dataNotice, specRows, scoreBar, breakdownTable, renderChrome };
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+  <script>
+(function () {
+  const V = window.VEOL, U = V.ui, S = V.scoring, C = S.CFG, esc = U.esc;
+  U.renderChrome("start");
+  const $ = (id) => document.getElementById(id);
+
+  const sp = new URLSearchParams(location.search);
+  const st = U.stateFromParams(sp);
+  const baseParams = () => U.paramsFromState(st).toString();
+  $("back-confirm").href = "advisor.html?" + baseParams();
+  $("sort").value = st.sort;
+  $("scope").innerHTML = U.dataNotice();
+
+  /* 條件摘要 */
+  const chips = [];
+  chips.push(st.unlimited ? "不限預算" : st.budget != null ? "預算 ≤ " + U.money(st.budget) : "預算未設定");
+  chips.push("用途：" + (st.purposes.length ? st.purposes.map((c) => C.purposes[c].label).join("、") : "未選"));
+  if (st.ramMin) chips.push("記憶體 ≥ " + st.ramMin + "GB");
+  if (st.storageMin) chips.push("儲存 ≥ " + (st.storageMin >= 1000 ? st.storageMin / 1000 + "TB" : st.storageMin + "GB"));
+  if (st.weightMax) chips.push("重量 ≤ " + st.weightMax + "kg");
+  if (st.discrete) chips.push("需要獨顯");
+  if (st.brands.length) chips.push("品牌：" + st.brands.join("、"));
+  $("cond").innerHTML = '<div class="chips">' + chips.map((c) => '<span class="chip">' + esc(c) + "</span>").join("") + "</div>" +
+    '<a class="btn secondary" style="min-height:44px" href="advisor.html?' + baseParams() + '">修改條件</a>';
+
+  const res = S.rank(V.products, st);
+  const total = V.products.length;
+  $("summary").innerHTML = "共 " + total + " 款：<b>" + res.qualified.length + "</b> 款符合條件" +
+    (res.unknown.length ? "、<b>" + res.unknown.length + "</b> 款資料不足無法確認" : "") +
+    "、" + res.failed.length + " 款不符合";
+
+  $("sort").addEventListener("change", () => {
+    const next = new URLSearchParams(location.search);
+    next.set("sort", $("sort").value);
+    location.search = next.toString();
+  });
+
+  /* 勾選比較 */
+  let picked = (sp.get("cmp") || "").split(",").filter(Boolean);
+  const known = new Set(V.products.map((p) => p.id));
+  picked = picked.filter((id) => known.has(id));
+  if (!sp.has("cmp")) picked = res.qualified.slice(0, 3).map((r) => r.p.id);
+
+  const productLink = (p) => "product.html?" + U.paramsFromState(st, { id: p.id }).toString();
+
+  function card(row, rank, kind) {
+    const p = row.p;
+    const mark = kind === "ok" ? '<div class="rank" aria-label="第 ' + rank + ' 名">' + rank + "</div>" : "";
+    let body = "";
+    if (kind === "unknown") {
+      body += '<div class="notice small"><b>無法確認是否符合：</b>' + row.ev.checks.filter((c) => c.status === "unknown").map((c) => esc(c.label + "（" + c.detail + "）")).join("、") + "</div>";
+    }
+    body += U.scoreBar(row.sc);
+    body += '<ul class="reasons">' + S.explain(row, st).map((t) => "<li>" + esc(t) + "</li>").join("") + "</ul>";
+    body += '<details class="breakdown"><summary>評分明細</summary>' + U.breakdownTable(row.sc, res.weights) + "</details>";
+    return '<article class="card result-card' + (kind === "ok" && rank === 1 ? " top" : "") + '">' + mark +
+      '<div><span class="badge teal">' + esc(p.brand) + "</span> " + (p.data_completeness.publication_ready === false ? '<span class="badge warn">暫存資料</span>' : "") + "</div>" +
+      "<h3>" + esc(p.name) + "</h3>" +
+      '<div class="price">' + (p.price_twd != null ? U.money(p.price_twd) : U.UNKNOWN) + "</div>" + body +
+      '<div class="card-actions"><label class="pick"><input type="checkbox" data-pick="' + esc(p.id) + '"' + (picked.includes(p.id) ? " checked" : "") + "> 加入比較</label>" +
+      '<a class="btn secondary" href="' + productLink(p) + '">看詳情</a></div></article>';
+  }
+
+  /* 結果 */
+  let html = "";
+  if (res.qualified.length) {
+    html += '<div class="grid cols">' + res.qualified.map((r, i) => card(r, i + 1, "ok")).join("") + "</div>";
+  } else {
+    const parts = [];
+    if (!st.unlimited && st.budget != null) parts.push("提高預算上限");
+    if (st.ramMin || st.storageMin || st.weightMax) parts.push("放寬記憶體、儲存或重量的必要條件");
+    if (st.discrete) parts.push("取消「必須有獨顯」");
+    html += '<div class="card empty"><h2>目前資料集中沒有符合所有條件的商品</h2>' +
+      "<p>" + (res.unknown.length ? "有 " + res.unknown.length + " 款因資料未提供而無法確認，列在下方。" : "也沒有因資料不足而無法確認的商品。") + "</p>" +
+      (st.discrete ? "<p>資料集中沒有任何一款已確認具備獨立顯示卡，因此不會硬湊結果。</p>" : "") +
+      (parts.length ? '<p class="muted">可以試試：' + esc(parts.join("、")) + "。</p>" : "") +
+      '<a class="btn" href="advisor.html?' + baseParams() + '">修改條件</a></div>';
+  }
+  $("results").innerHTML = html;
+
+  /* 下方：資料不足／不符合 */
+  let ex = "";
+  if (res.unknown.length) {
+    ex += '<details' + (res.qualified.length ? "" : " open") + "><summary>資料不足，無法確認是否符合必要條件（" + res.unknown.length + " 款，未納入上方排序）</summary>" +
+      '<p class="small muted">你設定了必要條件，但這些商品的相關欄位是「未提供／待確認」。未知不會被當作通過。</p>' +
+      '<div class="grid cols" style="padding-bottom:12px">' + res.unknown.map((r) => card(r, 0, "unknown")).join("") + "</div></details>";
+  }
+  if (res.failed.length) {
+    ex += "<details><summary>不符合條件（" + res.failed.length + " 款）</summary>" +
+      res.failed.map((r) => '<div class="ex-item"><b>' + esc(r.p.name) + "</b> <span class=\"muted\">" + (r.p.price_twd != null ? U.money(r.p.price_twd) : "") + "</span><br><span class=\"small\">" +
+        r.ev.checks.filter((c) => c.status === "fail").map((c) => esc(c.label + "：" + c.detail)).join("；") + "</span> ・ <a href=\"" + productLink(r.p) + "\">詳情</a></div>").join("") + "</details>";
+  }
+  $("excluded").innerHTML = ex;
+
+  /* 比較表 */
+  const byId = new Map();
+  [...res.qualified, ...res.unknown].forEach((r) => byId.set(r.p.id, r));
+
+  function renderTable() {
+    const rows = picked.map((id) => byId.get(id)).filter(Boolean);
+    if (!rows.length) {
+      $("cmp-table").innerHTML = '<div class="card muted">尚未選擇商品。</div>';
+      return;
+    }
+    const specs = rows.map((r) => U.specRows(r.p));
+    let h = '<div class="table-wrap"><table class="compare-table"><thead><tr><th scope="col">項目</th>' +
+      rows.map((r) => '<th scope="col"><a href="' + productLink(r.p) + '">' + esc(r.p.model) + "</a><div class=\"small muted\" style=\"font-weight:400\">" + esc(r.p.brand) + "</div></th>").join("") + "</tr></thead><tbody>";
+    h += '<tr><th scope="row">符合程度</th>' + rows.map((r) => "<td>" + U.scoreBar(r.sc) + "</td>").join("") + "</tr>";
+    specs[0].forEach((row, i) => {
+      h += '<tr><th scope="row">' + esc(row[0]) + "</th>" + specs.map((s) => "<td>" + s[i][1] + "</td>").join("") + "</tr>";
+    });
+    h += '<tr><th scope="row">優點</th>' + rows.map((r) => "<td><ul>" + (r.p.pros || []).map((t) => "<li>" + esc(t) + "</li>").join("") + "</ul></td>").join("") + "</tr>";
+    h += '<tr><th scope="row">限制</th>' + rows.map((r) => "<td><ul>" + (r.p.cons || []).map((t) => "<li>" + esc(t) + "</li>").join("") + "</ul></td>").join("") + "</tr>";
+    h += '<tr><th scope="row">資料來源</th>' + rows.map((r) => '<td><a href="' + esc(r.p.source_url) + '" target="_blank" rel="noopener">' + esc(r.p.source_name) + '</a><div class="small muted">' + esc(r.p.captured_at) + " 擷取</div></td>").join("") + "</tr>";
+    h += "</tbody></table></div>";
+    $("cmp-table").innerHTML = h;
+  }
+  renderTable();
+
+  function syncUrl() {
+    const next = new URLSearchParams(location.search);
+    next.set("cmp", picked.join(","));
+    history.replaceState(null, "", "?" + next.toString());
+  }
+  document.addEventListener("change", (e) => {
+    const box = e.target.closest("[data-pick]");
+    if (!box) return;
+    const id = box.getAttribute("data-pick");
+    if (box.checked) {
+      if (picked.length >= 4) {
+        box.checked = false;
+        $("cmp-msg").hidden = false;
+        return;
+      }
+      picked.push(id);
+    } else picked = picked.filter((x) => x !== id);
+    $("cmp-msg").hidden = true;
+    document.querySelectorAll('[data-pick="' + id + '"]').forEach((b) => (b.checked = box.checked));
+    syncUrl();
+    renderTable();
+  });
+})();
+</script>
+</body>
+</html>
